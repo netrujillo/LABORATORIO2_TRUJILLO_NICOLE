@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio 2</title>
+</head>
+<body>
+    <mi-header></mi-header>
+    <mi-menu></mi-menu>
+
+    <mi-main>
+        <social-profile slot="content" id="perfil"></social-profile>
+        <custom-table slot="content" id="table"></custom-table>
+        <pokemon-gallery slot="content" id="gallery" ></pokemon-gallery>
+    </mi-main>
+
+    <mi-footer></mi-footer>
+
+    <script src="./Componentes/header.js"></script>
+    <script src="./Componentes/footer.js"></script>
+    <script src="./Componentes/main.js"></script>
+    <script src="./Componentes/menu.js"></script>
+    <script src="./Componentes/social-profile.js"></script>
+    <script src="./Componentes/custom-table.js"></script>
+    <script src="./Componentes/gallery.js"></script>
+
+    <script>
+        const perfilPage = document.getElementById('perfil');
+        const tablePage = document.getElementById('table');
+        const galleryPage = document.getElementById('gallery');
+        const mainContainer = document.querySelector('mi-main');
+
+        function hideAllPages() {
+            perfilPage.style.display = 'none';
+            tablePage.style.display = 'none';
+            galleryPage.style.display = 'none';
+        }
+
+        function showPerfil() {
+            hideAllPages();
+            perfilPage.style.display = 'block';
+        }
+
+        function showTable() {
+            hideAllPages();
+            tablePage.style.display = 'block';
+        }
+
+        function showGallery() {
+            hideAllPages();
+            galleryPage.style.display = 'block';
+        }
+
+        showPerfil();
+
+        // Escuchar el evento de navegación para cambiar las vistas
+        const menu = document.querySelector('mi-menu');
+        menu.addEventListener('navigate', (event) => {
+            const { page } = event.detail;
+            switch(page) {
+                case 'perfil':
+                    showPerfil();
+                    break;
+                case 'table':
+                    showTable();
+                    break;
+                case 'gallery':
+                    showGallery();
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
+
